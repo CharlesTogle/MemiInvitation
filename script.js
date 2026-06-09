@@ -1,16 +1,17 @@
 const ITINERARY = [
-  { "7:00 pm": "Pick You Up" },
-  { "7:15 pm": "Quick Flower Stop" },
-  { "7:30 pm": "Photo Booth" },
-  { "8:00 pm": "LA Chicks" },
-  { "8:30 pm": "Dessert Run" },
-  { "9:00 pm": "Movie Date" },
-  { "9:30 pm": "Snack Refill" },
-  { "10:00 pm": "Late Night Walk" },
-  { "10:30 pm": "Stargazing" },
-  { "11:00 pm": "Playlist Time" },
-  { "11:30 pm": "Sweet Talk" },
-  { "12:00 am": "Sexy Time" },
+  { "12:00 pm": "Pick You Up" },
+  { "12:30 am": "We Arrive at MOA" },
+  { "1:00 pm": "LA Chicks memi!!" },
+  { "2:00 pm": "IKEA Date!!!" },
+  { "3:00 pm": "We are at KKV I buy you Make Up Cleanser" },
+  { "3:30 pm": "Timezone Memis!! Karaoke tayo plss" },
+  { "4:30 pm": "We buy Cloud Yogurt" },
+  { "5:00 pm": "We et Sichu Malatang" },
+  { "6:00 pm": "We are pauwi memi :(("},
+  { "7:00 pm": "We arrive at meminie house"},
+  { "7:30 pm": "I arrive at mr memi house" },
+  { "9:00 pm": "We watch anime/movie together :D" },
+  { "12:00 am": "We Ip" },
 ];
 
 const COUPLE_PHOTOS = [
@@ -26,10 +27,6 @@ const COUPLE_PHOTOS = [
 const MUSIC = "my_music.mp3";
 const MUSIC_COVER = "my_music_cover.png";
 
-const displayTop = "display_top.gif";
-const displayRight = "display_right.gif";
-const displayLeft = "display_left.gif";
-
 const heartSvg = `
   <svg viewBox="0 0 33.4 29.6" aria-hidden="true">
     <path fill="currentColor" d="M23.6,0c-2.9,0-5.5,1.6-6.9,4C15.3,1.6,12.7,0,9.8,0C4.4,0,0,4.4,0,9.8c0,10.1,16.7,19.8,16.7,19.8
@@ -38,7 +35,6 @@ const heartSvg = `
 `;
 
 document.addEventListener("DOMContentLoaded", () => {
-  loadStickers();
   setupInvitePage();
   setupItineraryPage();
 });
@@ -439,26 +435,4 @@ function setupMusicPlayer() {
   audio.addEventListener("play", () => setPlayingState(true));
   audio.addEventListener("pause", () => setPlayingState(false));
   audio.addEventListener("ended", () => setPlayingState(false));
-}
-
-function loadStickers() {
-  const stickerSources = {
-    top: displayTop,
-    right: displayRight,
-    left: displayLeft,
-  };
-
-  document.querySelectorAll("[data-sticker]").forEach((sticker) => {
-    const placement = sticker.dataset.sticker;
-    const source = stickerSources[placement];
-
-    if (!source) return;
-
-    sticker.src = source;
-    sticker.classList.add("has-image");
-    sticker.addEventListener("error", () => {
-      sticker.classList.remove("has-image");
-      sticker.removeAttribute("src");
-    });
-  });
 }
