@@ -3,7 +3,7 @@ const ITINERARY = [
   { "12:30 am": "We Arrive at MOA" },
   { "1:00 pm": "LA Chicks memi!!" },
   { "2:00 pm": "IKEA Date!!!" },
-  { "3:00 pm": "We are at KKV I buy you Make Up Cleanser" },
+  { "3:00 pm": "I buy you Make Up Cleanser KKV!!" },
   { "3:30 pm": "Timezone Memis!! Karaoke tayo plss" },
   { "4:30 pm": "We buy Cloud Yogurt" },
   { "5:00 pm": "We et Sichu Malatang" },
