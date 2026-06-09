@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A Date Invitation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body data-page="invite">
+    <main class="page invite-page">
+      <img class="sticker sticker--top" data-sticker="top" alt="" />
+      <img class="sticker sticker--right" data-sticker="right" alt="" />
+      <img class="sticker sticker--left" data-sticker="left" alt="" />
+
+      <section class="invite-shell" aria-labelledby="invite-title">
+        <img class="coquette-bow coquette-bow--left" src="coquette-bow.png" alt="" aria-hidden="true" />
+        <img class="coquette-bow coquette-bow--right" src="coquette-bow.png" alt="" aria-hidden="true" />
+        <p class="eyebrow">A tiny question</p>
+        <h1 id="invite-title">Will you go on a date with me?</h1>
+        <p class="invite-copy">
+          I made this little page just for you. Pick the obvious answer.
+        </p>
+
+        <div class="answer-stage" data-answer-stage>
+          <button class="button button--yes" id="yesButton" type="button">
+            Yes
+          </button>
+          <button class="button button--no" id="noButton" type="button">
+            No
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

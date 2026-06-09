@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Date Itinerary</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body data-page="itinerary">
+    <main class="page itinerary-page">
+      <div class="heart-field" id="heartField" aria-hidden="true"></div>
+
+      <img class="sticker sticker--top" data-sticker="top" alt="" />
+      <img class="sticker sticker--right" data-sticker="right" alt="" />
+      <img class="sticker sticker--left" data-sticker="left" alt="" />
+
+      <div class="photo-gallery" id="photoGallery" aria-label="Photos of us"></div>
+
+      <section class="itinerary-shell" aria-labelledby="itinerary-title">
+        <p class="eyebrow">It is a date</p>
+        <h1 id="itinerary-title">Our sweet little plan</h1>
+        <ol class="timeline" id="itineraryList" aria-label="Date itinerary"></ol>
+      </section>
+
+      <section class="music-player" aria-label="Music player">
+        <button class="vinyl-button" id="musicToggle" type="button" aria-label="Play music">
+          <span class="vinyl-disc" aria-hidden="true">
+            <img id="musicCover" alt="" />
+          </span>
+        </button>
+        <div class="music-controls">
+          <p>Your Universe</p>
+          <audio id="musicAudio" preload="metadata"></audio>
+          <div class="custom-audio-controls" aria-label="Music controls">
+            <button class="audio-control-button" id="musicPlayButton" type="button" aria-label="Play music">
+              <span class="audio-icon audio-icon--play" aria-hidden="true"></span>
+            </button>
+            <div class="audio-progress-group">
+              <input
+                class="audio-range audio-progress"
+                id="musicProgress"
+                type="range"
+                min="0"
+                max="100"
+                value="0"
+                step="0.1"
+                aria-label="Song progress"
+              />
+              <div class="audio-time" aria-hidden="true">
+                <span id="musicCurrentTime">0:00</span>
+                <span id="musicDuration">0:00</span>
+              </div>
+            </div>
+            <button class="audio-control-button" id="musicMuteButton" type="button" aria-label="Mute music">
+              <span class="audio-icon audio-icon--volume" aria-hidden="true"></span>
+            </button>
+            <input
+              class="audio-range audio-volume"
+              id="musicVolume"
+              type="range"
+              min="0"
+              max="1"
+              value="0.7"
+              step="0.01"
+              aria-label="Volume"
+            />
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
