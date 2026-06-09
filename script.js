@@ -53,26 +53,30 @@ function setupInvitePage() {
 
   if (!noButton || !stage) return;
 
-  requestAnimationFrame(() => {
-    pinNoButton(noButton);
-  });
-
   window.addEventListener("resize", () => {
     keepNoButtonInViewport(noButton);
   });
 
   noButton.addEventListener("mouseenter", () => {
     if (isTouchDevice()) return;
+    ensureNoButtonIsFloating(noButton, yesButton);
     moveNoButton(noButton, yesButton);
   });
 
   noButton.addEventListener("click", (event) => {
     event.preventDefault();
+    ensureNoButtonIsFloating(noButton, yesButton);
     moveNoButton(noButton, yesButton);
   });
 }
 
-function pinNoButton(noButton) {
+function ensureNoButtonIsFloating(noButton, yesButton) {
+  if (noButton.classList.contains("is-floating")) return;
+
+  pinNoButton(noButton, yesButton);
+}
+
+function pinNoButton(noButton, yesButton) {
   noButton.classList.remove("is-floating");
   noButton.style.position = "";
   noButton.style.left = "";
@@ -80,10 +84,15 @@ function pinNoButton(noButton) {
   noButton.style.width = "";
 
   const buttonRect = noButton.getBoundingClientRect();
+  const yesRect = yesButton?.getBoundingClientRect();
+  const alignedTop = yesRect
+    ? yesRect.top + (yesRect.height - buttonRect.height) / 2
+    : buttonRect.top;
+  const maxTop = Math.max(0, document.documentElement.clientHeight - buttonRect.height);
 
   noButton.style.position = "fixed";
   noButton.style.left = `${buttonRect.left}px`;
-  noButton.style.top = `${buttonRect.top}px`;
+  noButton.style.top = `${clamp(alignedTop, 0, maxTop)}px`;
   noButton.style.width = `${buttonRect.width}px`;
   noButton.classList.add("is-floating");
 }
@@ -182,10 +191,7 @@ function getRectDistance(rectA, rectB) {
 }
 
 function keepNoButtonInViewport(noButton) {
-  if (!noButton.classList.contains("is-floating")) {
-    pinNoButton(noButton);
-    return;
-  }
+  if (!noButton.classList.contains("is-floating")) return;
 
   const maxLeft = Math.max(0, document.documentElement.clientWidth - noButton.offsetWidth);
   const maxTop = Math.max(0, document.documentElement.clientHeight - noButton.offsetHeight);
@@ -373,19 +379,27 @@ function setupMusicPlayer() {
     }
   };
 
-  const toggleAudio = async () => {
+  const playAudio = async () => {
     if (audio.paused) {
       try {
         await audio.play();
       } catch {
         setPlayingState(false);
       }
+    }
+  };
+
+  const toggleAudio = async () => {
+    if (audio.paused) {
+      await playAudio();
     } else {
       audio.pause();
     }
   };
 
   audio.src = MUSIC;
+  audio.autoplay = true;
+  audio.preload = "auto";
   audio.volume = defaultVolume;
   cover.src = MUSIC_COVER;
   updateTime();
@@ -435,4 +449,8 @@ function setupMusicPlayer() {
   audio.addEventListener("play", () => setPlayingState(true));
   audio.addEventListener("pause", () => setPlayingState(false));
   audio.addEventListener("ended", () => setPlayingState(false));
+
+  requestAnimationFrame(() => {
+    playAudio();
+  });
 }
